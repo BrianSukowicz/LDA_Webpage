@@ -1,0 +1,8 @@
+.search_bar {
+	overflow: hidden;
+	background-color: brown;
+}
+
+.search_bar button {
+	cursor: pointer;
+}
