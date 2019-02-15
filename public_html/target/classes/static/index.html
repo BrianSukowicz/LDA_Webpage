@@ -11,5 +11,14 @@
     	<input type="text" placeholder="Search..">
 	<button type="submit"><i class="fa fa-search"></i></button>
     </div>
+
+    <div class="main_content">
+	    <div class="individ_info">
+		    <p>Name: Jane Doe</p>
+		    <p>Phone: 1-555-555-5555</p>
+		    <p>Email: jd@gmail.com</p>
+		    <p th:text="'Hello, ' + ${name} + '!'" />
+	    </div>
+    </div>
 </body>
 </html>

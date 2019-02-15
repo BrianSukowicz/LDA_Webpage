@@ -1,8 +1,13 @@
 .search_bar {
 	overflow: hidden;
-	background-color: brown;
+	background-color: #085797;
 }
 
 .search_bar button {
 	cursor: pointer;
+}
+
+.search_bar input {
+	margin: auto;
+	width: 40%
 }
