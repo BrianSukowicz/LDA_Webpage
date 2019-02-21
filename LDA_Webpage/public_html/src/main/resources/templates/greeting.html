@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel = "stylesheet" type = "text/css" href = "application.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>LDA directory</title>
+</head>
+
+<body>
+    <p th:text="${name}"/>
+    <p th:text="${age}"/>
+
+    <div id="top_bar">
+        <div id="search_bar">
+	    <input type="text" id="searchQuery" placeholder="Search..">
+            <button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="main_content">
+        <div class="individ_info">
+            <p>Name: Jane Doe</p>
+            <p>Phone: 1-555-555-5555</p>
+            <p>Email: jd@gmail.com</p>
+            <br><br>
+        </div>
+        <div class="individ_info">
+            <p>Name: Jane Doe</p>
+            <p>Phone: 1-555-555-5555</p>
+            <p>Email: jad@gmail.com</p>
+            <br><br>
+	</div>
+        <div class="individ_info">
+	    <p>Name: John Doe</p>
+            <p>Phone: 1-555-555-5555</p>
+            <p>Email: jod@gmail.com</p>
+            <br><br>
+        </div>
+    </div>
+    
+    <div id="search_links">
+	<a href=".">1</a>
+        <a href=".">2</a>
+        <a href=".">3</a>
+    </div>
+
+    <script>
+	window.onload = function() {
+            if (window.jQuery) {  
+        // jQuery is loaded  
+               //  alert("Yeah!");
+        } else {
+        // jQuery is not loaded
+                alert("Doesn't Work");
+            }
+        }
+        $("#searchButton").click(function(){
+            var newAddress =  "http://localhost:8080/greeting?name=".concat($('#searchQuery').val());
+	    console.log(newAddress);
+	    window.location.replace(newAddress);
+        });
+    </script>
+
+</body>
+</html>
