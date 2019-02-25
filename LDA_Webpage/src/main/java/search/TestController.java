@@ -17,13 +17,24 @@ import java.util.*;
 public class TestController {
 
     @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, 
-		    @RequestParam(name="age", required=false, defaultValue="30") String age, Model model) {
+    public String greeting(@RequestParam(name="search", required=false, defaultValue="") String search,  Model model) {
 	JSONObject person1 = new JSONObject();
 	JSONObject person2 = new JSONObject();
-	person1.put("Name", "Amanda");
-	person2.put("Name", "Jake");
-	JSONObject[] people = {person1, person2};
+	JSONObject person3 = new JSONObject();
+	
+	person1.put("First Name", "Amanda");
+	person1.put("Last Name", "Clark");
+	person1.put("Address", "123 South Street");
+	
+	person2.put("First Name", "Jake");
+	person2.put("Last Name", "Jones");
+        person2.put("Address", "245 North Street");
+	
+	person3.put("First Name", "Brian");
+        person3.put("Last Name", "Bananas");
+        person3.put("Address", "100 Rocky Road");
+
+	JSONObject[] people = {person1, person2, person3};
 	   // String[] values = hm.values().toArray(new String[hm.values().size()]);
         boolean containsParameter;
 	ArrayList<JSONObject> toAdd = new ArrayList<JSONObject>();
@@ -32,7 +43,7 @@ public class TestController {
 	    //String[] vals = people[i].values().toArray(new String[people[i].values().size()]);
 	    Collection<String> vals = people[i].values();
 	    for(String s: vals){
-		    if(s.contains(name)){
+		    if(s.contains(search)){
 			    containsParameter = true;
 		    }
 	    }
@@ -41,9 +52,11 @@ public class TestController {
 	    }
 	}
 	    
-
-	model.addAttribute("name", toAdd);
-	model.addAttribute("age", age);
+        String[] arrayOfAttributes = {"p1","p2", "p3", "p4", "p5"};
+	for (int i=0; i<toAdd.size(); i++){
+		model.addAttribute(arrayOfAttributes[i], toAdd.get(i));
+	}
+		//model.addAttribute("p1", toAdd);
         return "greeting";
     }
 
