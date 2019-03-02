@@ -51,6 +51,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <defaultGoal>test</defaultGoal>
     </build>
 
 </project>
