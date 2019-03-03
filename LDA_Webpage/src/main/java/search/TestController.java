@@ -17,7 +17,7 @@ import java.util.*;
 public class TestController {
 
     @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="search", required=false, defaultValue="") String search,  Model model) {
+    public String greeting(@RequestParam(name="search", required=false, defaultValue="") String search, Model model) {
 	JSONObject person1 = new JSONObject();
 	JSONObject person2 = new JSONObject();
 	JSONObject person3 = new JSONObject();
@@ -51,13 +51,26 @@ public class TestController {
 		    toAdd.add(people[i]);
 	    }
 	}
-	    
-        String[] arrayOfAttributes = {"p1","p2", "p3", "p4", "p5"};
-	for (int i=0; i<toAdd.size(); i++){
-		model.addAttribute(arrayOfAttributes[i], toAdd.get(i));
-	}
+
+//	String prettyOutput;
+	Set keys = person1.keySet();
+//
+//	while(keys.hasNext()) {
+//		String key = keys.next();
+//		if (jsonObject.get(key) instanceof JSONObject) {
+//			// do something with jsonObject here
+//		}
+//	}
+
+
+//        String[] arrayOfAttributes = {"p1","p2", "p3", "p4", "p5"};
+//	for (int i=0; i<toAdd.size(); i++){
+		model.addAttribute("results", keys);
+
+//	}
 		//model.addAttribute("p1", toAdd);
-        return "greeting";
+	model.addAttribute("numberOfResults", toAdd.size());
+	return "greeting";
     }
 
 }

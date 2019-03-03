@@ -17,16 +17,18 @@
         </div>
     </div>
 
+    <div id="results_container">
+        <p class="results">Results found:</p>
+        <div class="results"><p th:text="${numberOfResults}"/></div>
+    </div>
+
+
+
     <div class="main_content">
-        <p th:text="${p1}"/>
-	<p th:text="${p2}"/>
-        <p th:text="${p3}"/>
-        <p th:text="${p4}"/>
-        <p th:text="${p5}"/>
- 
+        <div> <p th:text="${results}"/> </div>
     </div>
     
-    <script>
+    <script th:inline="javascript">
 	window.onload = function() {
             if (window.jQuery) {  
         // jQuery is loaded  
@@ -36,10 +38,12 @@
                 alert("Doesn't Work");
             }
         }
+
+
         $("#searchButton").click(function(){
             var newAddress =  "http://localhost:8080/greeting?search=".concat($('#searchQuery').val());
-	    console.log(newAddress);
-	    window.location.replace(newAddress);
+	        console.log(newAddress);
+	        window.location.replace(newAddress);
         });
     </script>
 
