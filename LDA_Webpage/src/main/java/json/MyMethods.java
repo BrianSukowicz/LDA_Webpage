@@ -1,7 +1,5 @@
-package search;
-import java.io.File;
+package json;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.io.OutputStream;
