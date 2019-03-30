@@ -41,7 +41,7 @@
 
 
         $("#searchButton").click(function(){
-            var newAddress =  "http://localhost:8080/greeting?search=".concat($('#searchQuery').val());
+            var newAddress =  "http://localhost:8080/contacts?search=".concat($('#searchQuery').val());
 	        console.log(newAddress);
 	        window.location.replace(newAddress);
         });
