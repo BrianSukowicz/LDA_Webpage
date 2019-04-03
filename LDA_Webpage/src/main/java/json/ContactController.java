@@ -30,13 +30,15 @@ public class ContactController {
 	person3.put("First Name", "Brian");
 	person3.put("Last Name", "Bananas");
 	person3.put("Address", "100 Rocky Road");
-
-	JSONObject[] people = {person1, person2, person3};
+	String pathName = "C:\\Users\\brian\\IdeaProjects\\Test\\src\\main\\java\\LDARoster.xlsx";
+//	JSONObject[] people = {person1, person2, person3};
 	MyMethods methodCaller = new MyMethods();
+	JSONParser jsonParser = new JSONParser();
+	String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
+			"Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
+
+	JSONObject[] people = jsonParser.JSONFromExcel(headers, pathName);
 	ArrayList<JSONObject> contactInfoToDisplay = methodCaller.getJSONObjectsMatchingKeyword(search, people);
-
-
-	String[] headers = {"First Name", "Last Name", "Address"};
 	String formattedContactInfoToDisplay = methodCaller.getFormattedHTML(headers, contactInfoToDisplay, search);
 
 
