@@ -2,7 +2,11 @@ package json;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
-
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +36,7 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/uploads")
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("files", storageService.loadAll().map(
@@ -52,15 +56,23 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/")
+    @PostMapping("/uploads")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-
+                                   RedirectAttributes redirectAttributes) throws IOException {
+        String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
+                "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
+        JSONConverter converter = new JSONConverter();
         storageService.store(file);
+        String pathName = ("LDA_Webpage\\upload-dir\\" + file.getOriginalFilename());
+        JSONArray arrayOfPeople = converter.JSONFromExcel(headers, pathName);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("LDA_Webpage\\target\\roster.json"));
+        writer.write(arrayOfPeople.toJSONString());
+        writer.close();
+
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
-        //write her you convert to json
-        return "redirect:/";
+
+        return "redirect:/uploads";
 //        return "Success";
     }
 

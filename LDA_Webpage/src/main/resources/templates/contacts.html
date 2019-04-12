@@ -9,7 +9,9 @@
 </head>
 
 <body>
-  
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
     <div id="top_bar">
         <div id="search_bar">
 	    <input type="text" id="searchQuery" placeholder="Search..">
@@ -25,7 +27,8 @@
 
 
     <div class="main_content">
-        <div> <p th:utext="${results}"/> </div>
+        <div th:utext="${results}"/>
+        <!--<div> <p th:utext="${results}"/> </div>-->
     </div>
     
     <script th:inline="javascript">

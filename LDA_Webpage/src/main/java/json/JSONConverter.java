@@ -1,7 +1,7 @@
 package json;
 
 import org.json.simple.JSONObject;
-
+import org.json.simple.JSONArray;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -15,10 +15,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
-
-public class JSONParser {
+//upload an excel file; immediately convert to json. Store json file. read from json
+public class JSONConverter {
     static XSSFRow row;
-    JSONObject[] JSONFromExcel (String[] desiredHeaders, String pathName) {
+    JSONArray JSONFromExcel (String[] desiredHeaders, String pathName) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("blank");
         FileInputStream fis = null;
@@ -46,7 +46,8 @@ public class JSONParser {
         Iterator < Cell >  cellIterator = row.cellIterator();
 
         ArrayList<String> allHeaders = new ArrayList<String>();
-        ArrayList<JSONObject> people = new ArrayList<JSONObject>();
+//        ArrayList<JSONObject> people = new ArrayList<JSONObject>();
+        JSONArray people = new JSONArray();
         ArrayList<Integer> listOfIndeces = new ArrayList<Integer>();
         Cell cell;
         String str_cell;
@@ -108,9 +109,9 @@ public class JSONParser {
 //                System.out.println(obj);
             }
         }
-        JSONObject[] arr = new JSONObject[people.size()];
-        arr = people.toArray(arr);
-        return arr;
+//        JSONObject[] arr = new JSONObject[people.size()];
+//        arr = people.toArray(arr);
+        return people;
     }
 }
 

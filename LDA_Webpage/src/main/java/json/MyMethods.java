@@ -13,19 +13,19 @@ import java.util.Collection;
 
 public class MyMethods {
 
-    ArrayList<JSONObject> getJSONObjectsMatchingKeyword(String keyword, JSONObject [] arrayOfPeople){
+    ArrayList<JSONObject> getJSONObjectsMatchingKeyword(String keyword, ArrayList<JSONObject> arrayOfPeople){
         boolean containsParameter;
         ArrayList<JSONObject> matchingObjects = new ArrayList<JSONObject>();
-        for(int i=0; i<arrayOfPeople.length; i++) {
+        for(int i=0; i<arrayOfPeople.size(); i++) {
             containsParameter = false;
-            Collection<String> vals = arrayOfPeople[i].values();
+            Collection<String> vals = arrayOfPeople.get(i).values();
             for(String s: vals){
                 if(s.contains(keyword)){
                     containsParameter = true;
                 }
             }
             if(containsParameter){
-                matchingObjects.add(arrayOfPeople[i]);
+                matchingObjects.add(arrayOfPeople.get(i));
             }
         }
         return matchingObjects;
@@ -36,12 +36,24 @@ public class MyMethods {
         String closingTag = "</mark>";
         StringBuffer jsonValue;
         int indexOfSearch;
+        int counter = 0;
         StringBuffer formattedHTML = new StringBuffer();
         for(JSONObject jsonPerson : jsonObjects) {
+//            if(counter%2==0){
+//                formattedHTML.append("<p class=\"column1\" style=\"float:left; width:40%;\">");
+//            }
+//            else{
+//                formattedHTML.append("<p class=\"column2\" style=\"float:left; width:40%;\">");
+//            }
+            formattedHTML.append("<p style=\"float:left; width:30%;\">");
+            counter++;
             for(String header: headers) {
                 formattedHTML.append(header);
                 formattedHTML.append(": ");
                 jsonValue = new StringBuffer((String)jsonPerson.get(header));
+                if(jsonValue==null){
+                    jsonValue = new StringBuffer();
+                }
                 indexOfSearch = jsonValue.toString().toLowerCase().indexOf(keyword.toLowerCase());
                 if (indexOfSearch > -1 & keyword.length() > 0) {
                     //jsonValue = jsonValue.toLowerCase().replace(search,openingTag + search + closingTag);
@@ -49,8 +61,10 @@ public class MyMethods {
                     jsonValue.insert(indexOfSearch, openingTag);
                 }
                 formattedHTML.append(jsonValue); //if using the iteraetor, then replace header with key
+//                formattedHTML.append("</p>");
                 formattedHTML.append("<br>");
             }
+            formattedHTML.append("</p>");
             formattedHTML.append("<br>");
         }
         return formattedHTML.toString();

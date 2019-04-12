@@ -1,11 +1,16 @@
 package json;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.json.simple.JSONObject;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -14,30 +19,19 @@ import java.util.*;
 public class ContactController {
 
     @GetMapping("/contacts")
-    public String contacts(@RequestParam(name= "search", required=false, defaultValue="") String search, Model model) {
-	JSONObject person1 = new JSONObject();
-	JSONObject person2 = new JSONObject();
-	JSONObject person3 = new JSONObject();
-
-	person1.put("First Name", "Amanda");
-	person1.put("Last Name", "Clark");
-	person1.put("Address", "123 South Street");
-
-	person2.put("First Name", "Jake");
-	person2.put("Last Name", "Jones");
-	person2.put("Address", "245 North Street");
-
-	person3.put("First Name", "Brian");
-	person3.put("Last Name", "Bananas");
-	person3.put("Address", "100 Rocky Road");
-	String pathName = "C:\\Users\\brian\\IdeaProjects\\Test\\src\\main\\java\\LDARoster.xlsx";
-//	JSONObject[] people = {person1, person2, person3};
+    public String contacts(@RequestParam(name= "search", required=false, defaultValue="") String search, Model model) throws IOException, ParseException {
+//	String pathName = "C:\\Users\\brian\\IdeaProjects\\Test\\src\\main\\java\\LDARoster.xlsx";
 	MyMethods methodCaller = new MyMethods();
-	JSONParser jsonParser = new JSONParser();
 	String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
 			"Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
-
-	JSONObject[] people = jsonParser.JSONFromExcel(headers, pathName);
+	JSONParser parser = new JSONParser();
+	Object parsedJsonObject = parser.parse(new FileReader("LDA_Webpage\\target\\roster.json"));
+	JSONArray arrayOfJSONPeople = (JSONArray) parsedJsonObject;
+	ArrayList<JSONObject> people = new ArrayList<JSONObject>();
+		for (int i = 0; i < arrayOfJSONPeople.size(); i++) {
+			people.add((JSONObject)arrayOfJSONPeople.get(i));
+		}
+	//JSONObject[] people = jsonConverter.JSONFromExcel(headers, pathName); //here we just read from future json file
 	ArrayList<JSONObject> contactInfoToDisplay = methodCaller.getJSONObjectsMatchingKeyword(search, people);
 	String formattedContactInfoToDisplay = methodCaller.getFormattedHTML(headers, contactInfoToDisplay, search);
 
