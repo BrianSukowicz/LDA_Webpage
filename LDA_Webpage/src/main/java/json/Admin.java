@@ -1,9 +1,8 @@
 package json;
 
-public class User {
+public class Admin {
     private String id; //Why not have username? That makes more sense right? Why yes it does. However, the form would not work with username and I don't know why. So it is ID now.
     private String password;
-
 
     public String getId() {
         return id;
