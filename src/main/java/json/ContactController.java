@@ -28,8 +28,10 @@ public class ContactController {
 	MyMethods methodCaller = new MyMethods();
 	String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
 			"Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
+		System.out.println("Working Directory = " +
+				System.getProperty("user.dir"));
 	JSONParser parser = new JSONParser();
-	Object parsedJsonObject = parser.parse(new FileReader("LDA_Webpage\\target\\roster.json"));
+	Object parsedJsonObject = parser.parse(new FileReader("src\\main\\java\\json\\roster.json"));
 	JSONArray arrayOfJSONPeople = (JSONArray) parsedJsonObject;
 	ArrayList<JSONObject> people = new ArrayList<JSONObject>();
 		for (int i = 0; i < arrayOfJSONPeople.size(); i++) {

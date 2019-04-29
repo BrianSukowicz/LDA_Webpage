@@ -43,6 +43,7 @@ public class MyMethods {
         int indexOfSearch;
         int counter = 0;
         StringBuffer formattedHTML = new StringBuffer();
+        System.out.println(jsonObjects);
         for(JSONObject jsonPerson : jsonObjects) {
 //            if(counter%2==0){
 //                formattedHTML.append("<p class=\"column1\" style=\"float:left; width:40%;\">");
@@ -56,7 +57,10 @@ public class MyMethods {
                 indexOfSearch = -1;
                 formattedHTML.append(header);
                 formattedHTML.append(": ");
+                System.out.println(header);
+                System.out.println(jsonPerson);
                 jsonValue = new StringBuffer((String)jsonPerson.get(header));
+                System.out.println(jsonValue);
                 if(jsonValue==null){
                     jsonValue = new StringBuffer();
                 }
