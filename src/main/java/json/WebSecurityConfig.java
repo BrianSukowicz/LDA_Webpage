@@ -47,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] credentials = new String[4];
         System.out.println("Working Directory = " +
                 System.getProperty("user.dir"));
-        credentials = Files.readAllLines(Paths.get("src\\main\\java\\json\\credentials.txt")).toArray(credentials);
+        credentials = Files.readAllLines(Paths.get("credentials.txt")).toArray(credentials);
+//        credentials = Files.readAllLines(Paths.get("src\\main\\java\\json\\credentials.txt")).toArray(credentials);
         String user_username = credentials[0];
         String user_password = credentials[1];
         String admin_username = credentials[2];
