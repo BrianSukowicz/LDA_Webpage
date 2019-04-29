@@ -21,8 +21,10 @@ import java.util.*;
 public class ContactController {
 
     @GetMapping("/contacts")
-    public String contacts(@RequestParam(name= "search", required=false, defaultValue="") String search, Model model) throws IOException, ParseException {
+    public String contacts(@RequestParam(name= "search", required=false, defaultValue="") String search,
+						   @RequestParam(name="category", defaultValue = "Last Name") String category, Model model) throws IOException, ParseException {
 //	String pathName = "C:\\Users\\brian\\IdeaProjects\\Test\\src\\main\\java\\LDARoster.xlsx";
+//	System.out.println(category);
 	MyMethods methodCaller = new MyMethods();
 	String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
 			"Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
@@ -34,12 +36,13 @@ public class ContactController {
 			people.add((JSONObject)arrayOfJSONPeople.get(i));
 		}
 	//JSONObject[] people = jsonConverter.JSONFromExcel(headers, pathName); //here we just read from future json file
-	ArrayList<JSONObject> contactInfoToDisplay = methodCaller.getJSONObjectsMatchingKeyword(search, people);
-	String formattedContactInfoToDisplay = methodCaller.getFormattedHTML(headers, contactInfoToDisplay, search);
+	ArrayList<JSONObject> contactInfoToDisplay = methodCaller.getJSONObjectsMatchingKeyword(search, category, people);
+	String formattedContactInfoToDisplay = methodCaller.getFormattedHTML(headers, contactInfoToDisplay, search, category);
 
 
 	model.addAttribute("results", formattedContactInfoToDisplay);
 	model.addAttribute("numberOfResults", contactInfoToDisplay.size());
+	model.addAttribute("category", category);
 	return "contacts";
     }
 

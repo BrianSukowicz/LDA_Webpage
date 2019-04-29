@@ -13,25 +13,30 @@ import java.util.Collection;
 
 public class MyMethods {
 
-    ArrayList<JSONObject> getJSONObjectsMatchingKeyword(String keyword, ArrayList<JSONObject> arrayOfPeople){
-        boolean containsParameter;
+    ArrayList<JSONObject> getJSONObjectsMatchingKeyword(String keyword, String category, ArrayList<JSONObject> arrayOfPeople){
+//        boolean containsParameter;
         ArrayList<JSONObject> matchingObjects = new ArrayList<JSONObject>();
         for(int i=0; i<arrayOfPeople.size(); i++) {
-            containsParameter = false;
-            Collection<String> vals = arrayOfPeople.get(i).values();
-            for(String s: vals){
-                if(s.contains(keyword)){
-                    containsParameter = true;
-                }
-            }
-            if(containsParameter){
+//            containsParameter = false;
+//            Collection<String> vals = arrayOfPeople.get(i).values();
+//            for(String s: vals){
+//                System.out.println(s);
+//                if(s.contains(keyword)){
+//                    containsParameter = true;
+//                }
+//            }
+            String val = (String) arrayOfPeople.get(i).get(category);
+            if(val.toLowerCase().contains(keyword.toLowerCase())){
                 matchingObjects.add(arrayOfPeople.get(i));
             }
+//            if(containsParameter){
+//                matchingObjects.add(arrayOfPeople.get(i));
+//            }
         }
         return matchingObjects;
     }
 
-    String getFormattedHTML(String[] headers, ArrayList<JSONObject> jsonObjects, String keyword){
+    String getFormattedHTML(String[] headers, ArrayList<JSONObject> jsonObjects, String keyword, String category){
         String openingTag = "<mark class=\"found\">";
         String closingTag = "</mark>";
         StringBuffer jsonValue;
@@ -45,16 +50,20 @@ public class MyMethods {
 //            else{
 //                formattedHTML.append("<p class=\"column2\" style=\"float:left; width:40%;\">");
 //            }
-            formattedHTML.append("<p style=\"float:left; width:30%;\">");
+//            formattedHTML.append("<p style=\"float:left; width:30%;\">");
             counter++;
             for(String header: headers) {
+                indexOfSearch = -1;
                 formattedHTML.append(header);
                 formattedHTML.append(": ");
                 jsonValue = new StringBuffer((String)jsonPerson.get(header));
                 if(jsonValue==null){
                     jsonValue = new StringBuffer();
                 }
-                indexOfSearch = jsonValue.toString().toLowerCase().indexOf(keyword.toLowerCase());
+                if(header.equals(category)) {
+                    indexOfSearch = jsonValue.toString().toLowerCase().indexOf(keyword.toLowerCase());
+//                    System.out.println(indexOfSearch);
+                }
                 if (indexOfSearch > -1 & keyword.length() > 0) {
                     //jsonValue = jsonValue.toLowerCase().replace(search,openingTag + search + closingTag);
                     jsonValue.insert(indexOfSearch + keyword.length(), closingTag);
