@@ -41,26 +41,29 @@ public class MyMethods {
         String closingTag = "</mark>";
         StringBuffer jsonValue;
         int indexOfSearch;
-        int counter = 0;
+        int counter = 3;
         StringBuffer formattedHTML = new StringBuffer();
-        System.out.println(jsonObjects);
+//        System.out.println(jsonObjects);
         for(JSONObject jsonPerson : jsonObjects) {
-//            if(counter%2==0){
-//                formattedHTML.append("<p class=\"column1\" style=\"float:left; width:40%;\">");
+//            if(counter%3==0){
+//                formattedHTML.append("<p class=\"column1\" style=\"float:left; width:30%;\">");
+//            }
+//            else if (counter%2==0){
+//                formattedHTML.append("<p class=\"column2\" style=\"display: inline-block; width:30%;\">");
 //            }
 //            else{
-//                formattedHTML.append("<p class=\"column2\" style=\"float:left; width:40%;\">");
+//                formattedHTML.append("<p class=\"column3\" style=\"float: right; width:30%; \">");
 //            }
-//            formattedHTML.append("<p style=\"float:left; width:30%;\">");
+            formattedHTML.append("<p style=\"float:right; width:33%; display: inline;\">");
             counter++;
             for(String header: headers) {
                 indexOfSearch = -1;
                 formattedHTML.append(header);
                 formattedHTML.append(": ");
-                System.out.println(header);
-                System.out.println(jsonPerson);
+//                System.out.println(header);
+//                System.out.println(jsonPerson);
                 jsonValue = new StringBuffer((String)jsonPerson.get(header));
-                System.out.println(jsonValue);
+//                System.out.println(jsonValue);
                 if(jsonValue==null){
                     jsonValue = new StringBuffer();
                 }
@@ -78,7 +81,7 @@ public class MyMethods {
                 formattedHTML.append("<br>");
             }
             formattedHTML.append("</p>");
-            formattedHTML.append("<br>");
+//            formattedHTML.append("<br>");
         }
         return formattedHTML.toString();
     }

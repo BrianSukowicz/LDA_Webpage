@@ -2,40 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel = "stylesheet" type = "text/css" href = "application.css" />
+    <link rel = "stylesheet" type = "text/css" href = "contacts.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>LDA directory</title>
 </head>
 
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-    <div id="top_bar">
-        <div id="search_bar">
-	    <input type="text" id="searchQuery" placeholder="Search..">
-            <button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
-        </div>
+
+    <!--<div id="top_bar">-->
+
+    <!--</div>-->
+
+
+    <!--<form id = "search_bar">-->
+        <!--<input type="text" id="searchQuery" placeholder="Search..">-->
+        <!--<button type="submit" id="searchButton"><i class="fa fa-search"></i></button>-->
+        <!--</div>-->
+    <!--</form>-->
+
+    <ul>
+        <li class="left"><a class="home" href="https://thelda.org/explore/#what-is-lda">about the LDA</a></li>
+        <li class="left"><a href="#login">login</a></li>
+        <li class="right"><a href="#directory">directory</a></li>
+        <li class="right"><a href="thelda.org/contact">contact us</a></li>
+    </ul>
+
+    <div id="search_bar">
+        <form>
+            <select id="drop-down-menu" class="bar">
+                <option id="Last Name" value="Last Name">Last Name</option>
+                <option id="First Name" value="First Name">First Name</option>
+                <option id="Maiden Name" value="Maiden Name">Maiden Name</option>
+                <option id="Date of Consecration" value="Date of Consecration">Date of Consecration</option>
+                <option id="Address Indicator" value="Address Indicator">Address Indicator</option>
+                <option id="Address 1" value="Address 1">Address 1</option>
+                <option id="Address 2" value="Address 2">Address 2</option>
+                <option id="City" value="City">City</option>
+                <option id="State" value="State">State</option>
+                <option id="Zip" value="Zip">Zip</option>
+                <option id="Country" value="Country">Country</option>
+                <option id="Primary Phone" value="Primary Phone">Primary Phone</option>
+                <option id="Email" value="Email">Email</option>
+            </select>
+        </form>
+        <input type="text" id="searchQuery" class="bar" placeholder="Search..">
+        <button type="submit" id="searchButton" class="bar"><i class="fa fa-search"></i></button>
     </div>
-    <form>
-        Select search category
-        <select id="drop-down-menu">
-            <option id="Last Name" value="Last Name">Last Name</option>
-            <option id="First Name" value="First Name">First Name</option>
-            <option id="Maiden Name" value="Maiden Name">Maiden Name</option>
-            <option id="Date of Consecration" value="Date of Consecration">Date of Consecration</option>
-            <option id="Address Indicator" value="Address Indicator">Address Indicator</option>
-            <option id="Address 1" value="Address 1">Address 1</option>
-            <option id="Address 2" value="Address 2">Address 2</option>
-            <option id="City" value="City">City</option>
-            <option id="State" value="State">State</option>
-            <option id="Zip" value="Zip">Zip</option>
-            <option id="Country" value="Country">Country</option>
-            <option id="Primary Phone" value="Primary Phone">Primary Phone</option>
-            <option id="Email" value="Email">Email</option>
-        </select>
-    </form>
+
+    <!--<form th:action="@{/logout}" method="post">-->
+        <!--<input type="submit" value="Sign Out"/>-->
+    <!--</form>-->
+
     <div id="results_container">
         <p class="results">Results found:</p>
         <div class="results"><p th:text="${numberOfResults}"/></div>
@@ -43,9 +61,8 @@
 
 
 
-    <div class="main_content">
+    <div  class="main_content">
         <div th:utext="${results}"/>
-        <!--<div> <p th:utext="${results}"/> </div>-->
     </div>
     
     <script th:inline="javascript">

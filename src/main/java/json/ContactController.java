@@ -31,7 +31,7 @@ public class ContactController {
 		System.out.println("Working Directory = " +
 				System.getProperty("user.dir"));
 	JSONParser parser = new JSONParser();
-	Object parsedJsonObject = parser.parse(new FileReader("src\\main\\java\\json\\roster.json"));
+	Object parsedJsonObject = parser.parse(new FileReader("roster.json"));
 	JSONArray arrayOfJSONPeople = (JSONArray) parsedJsonObject;
 	ArrayList<JSONObject> people = new ArrayList<JSONObject>();
 		for (int i = 0; i < arrayOfJSONPeople.size(); i++) {
