@@ -1,25 +1,24 @@
 <!DOCTYPE HTML>
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>HomeContent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<link rel = "stylesheet" type = "text/css" href = "application.css" />-->
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 </head>
 <body>
 	<a href="/contacts">Contacts</a>
     <a id="upload_link" href="/uploads"></a>
-    <!--<form th:action="@{/logout}" method="post">-->
-        <!--<input type="submit" value="Sign Out"/>-->
-    <!--</form>-->
-    <!--<p id="role" th:text="${link}"/>-->
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <p id="role" th:text="${link}"/>
 
-    <!--<script th:inline="javascript">-->
-    <!--<script>-->
-        <!--var role = document.getElementById("role").innerHTML;-->
-        <!--if(role == "[ROLE_ADMIN]"){-->
-            <!--document.getElementById("upload_link").innerHTML = "Upload";-->
-        <!--}-->
-	<!--</script>-->
+    <script th:inline="javascript">
+        var role = document.getElementById("role").innerHTML;
+        if(role == "[ROLE_ADMIN]"){
+            document.getElementById("upload_link").innerHTML = "Upload";
+        }
+	</script>
 </body>
 </html>
