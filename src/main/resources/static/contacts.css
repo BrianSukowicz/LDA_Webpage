@@ -1,7 +1,7 @@
 #search_bar {
 	position: relative;
     top: 20px;
-    right: 30%;
+    right: 10%;
     width: 504px;
     height: 30px;
     margin: 0 auto;
@@ -31,6 +31,9 @@
   float: left;
 }
 
+#logoutForm {
+    visibility: hidden;
+}
 
 ul {
   list-style-type: none;
@@ -44,6 +47,8 @@ ul {
 
 li {
   float: left;
+  width: 20%;
+  height: 10%;
 }
 
 li a {
@@ -54,10 +59,21 @@ li a {
   text-decoration: none;
 }
 
+.logo{
+    background: url("lda-logo.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
 li a:hover {
   background-color: #cccccc;
   color: white;
 }
+
+.logo a:hover{
+    background-color: transparent;
+}
+
 
 #top_bar {
 	overflow: hidden;
@@ -88,6 +104,8 @@ li a:hover {
 .results {
     display: inline-block;
     text-align: right;
+    font-weight: bold;
+
 }
 
 #results_container {

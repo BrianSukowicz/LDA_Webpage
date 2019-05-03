@@ -22,10 +22,12 @@
     <!--</form>-->
 
     <ul>
-        <li class="left"><a class="home" href="https://thelda.org/explore/#what-is-lda">about the LDA</a></li>
-        <li class="left"><a href="#login">login</a></li>
-        <li class="right"><a href="#directory">directory</a></li>
-        <li class="right"><a href="https://thelda.org/contact/">contact us</a></li>
+        <li><a class="home" href="https://thelda.org/explore/#what-is-lda">About The LDA</a></li>
+        <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+        <!--<li><img src="lda-logo.png"></li>-->
+        <li class="logo"><a href="https://thelda.org/"> </a></li>
+        <li><a href="#directory">Directory</a></li>
+        <li><a href="https://thelda.org/contact/">Contact Us</a></li>
     </ul>
 
     <div id="search_bar">
@@ -50,9 +52,9 @@
         <button type="submit" id="searchButton" class="bar"><i class="fa fa-search"></i></button>
     </div>
 
-    <!--<form th:action="@{/logout}" method="post">-->
-        <!--<input type="submit" value="Sign Out"/>-->
-    <!--</form>-->
+    <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 
     <div id="results_container">
         <p class="results">Results found:</p>
