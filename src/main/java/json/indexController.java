@@ -14,6 +14,6 @@ public class indexController {
     public String addUploadLink (Model model){
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         model.addAttribute("link", authorities);
-        return("/index");
+        return("index");
     }
 }
