@@ -54,7 +54,7 @@ public class MyMethods {
 //            else{
 //                formattedHTML.append("<p class=\"column3\" style=\"float: right; width:30%; \">");
 //            }
-            formattedHTML.append("<p style=\"float:right; width:33%; display: inline;\">");
+            formattedHTML.append("<p style=\"float:left; width:33%; display: inline;\">");
             counter++;
             for(String header: headers) {
                 indexOfSearch = -1;
