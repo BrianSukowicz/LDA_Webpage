@@ -56,7 +56,8 @@ public class FileUploadController {
     @PostMapping("/uploads")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) throws IOException {
-        System.out.println("test3");
+        System.out.println(file);
+
         String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
                 "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
         JSONConverter converter = new JSONConverter();
