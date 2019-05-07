@@ -22,11 +22,10 @@
     <!--</form>-->
 
     <ul>
-        <li><a class="home" href="https://thelda.org/explore/#what-is-lda">About The LDA</a></li>
+        <li><a class="home" href="/">Home</a></li>
         <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
-        <!--<li><img src="lda-logo.png"></li>-->
         <li class="logo"><a href="https://thelda.org/"> </a></li>
-        <li><a href="#directory">Directory</a></li>
+        <li><a href="/contacts">Directory</a></li>
         <li><a href="https://thelda.org/contact/">Contact Us</a></li>
     </ul>
 
@@ -80,8 +79,9 @@
 
         $("#searchButton").click(function(){
             <!--var newAddress =  "http://localhost:8080/contacts?search=".concat($('#searchQuery').val());-->
+            var newAddress = window.location.href.concat('?search=');
             var category = document.getElementById("drop-down-menu").value
-            var newAddress =  "http://localhost:8080/contacts?search=".concat($('#searchQuery').val()).concat("&category=")
+            newAddress =  newAddress.concat($('#searchQuery').val()).concat("&category=")
             .concat(category);
 	        console.log(newAddress);
 	        window.location.replace(newAddress);

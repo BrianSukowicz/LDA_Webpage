@@ -3,21 +3,40 @@
 <head>
     <title>HomeContent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!--<link rel = "stylesheet" type = "text/css" href = "application.css" />-->
+    <link rel = "stylesheet" type = "text/css" href = "index.css" />
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 </head>
 <body>
-	<a href="/contacts">Contacts</a>
-    <a id="upload_link" href="/uploads"></a>
-    <form th:action="@{/logout}" method="post">
+    <ul>
+        <li><a class="home" href="/">Home</a></li>
+        <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+        <li class="logo"><a href="https://thelda.org/"> </a></li>
+        <li><a href="/contacts">Directory</a></li>
+        <li><a href="https://thelda.org/contact/">Contact Us</a></li>
+    </ul>
+
+    <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+
+    <a id="upload_link" href="/uploads"></a>
+    <br>
+    <br>
+    <a id="changeUser" href="/changeLogin"></a>
+    <br>
+    <br>
+    <a id="changeAdmin" href="/changeLoginAdmin"></a>
+
+
+
     <p id="role" th:text="${link}"/>
 
     <script th:inline="javascript">
         var role = document.getElementById("role").innerHTML;
         if(role == "[ROLE_ADMIN]"){
-            document.getElementById("upload_link").innerHTML = "Upload";
+            document.getElementById("upload_link").innerHTML = "Upload new Excel file";
+            document.getElementById("changeUser").innerHTML = "Change user login";
+            document.getElementById("changeAdmin").innerHTML = "Change admin login";
         }
 	</script>
 </body>

@@ -1,6 +1,5 @@
 package json;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +32,7 @@ public class ChangeLoginController {
     public String greetingSubmit(@ModelAttribute User user) throws IOException, Exception {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String[] credentials = new String[4];
-        Path file = Paths.get("src\\main\\java\\json\\credentials.txt");
+        Path file = Paths.get("credentials.txt");
         credentials = Files.readAllLines(file).toArray(credentials);
         credentials[0] = user.getId();
         credentials[1] = (passwordEncoder.encode(user.getPassword()));
@@ -46,7 +45,7 @@ public class ChangeLoginController {
     public String greetingSubmitAdmin(@ModelAttribute Admin admin) throws IOException, Exception {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String[] credentials = new String[4];
-        Path file = Paths.get("src\\main\\java\\json\\credentials.txt");
+        Path file = Paths.get("credentials.txt");
         credentials = Files.readAllLines(file).toArray(credentials);
         credentials[2] = admin.getId();
         credentials[3] = (passwordEncoder.encode(admin.getPassword()));

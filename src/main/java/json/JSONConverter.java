@@ -11,11 +11,9 @@ import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
-//upload an excel file; immediately convert to json. Store json file. read from json
 public class JSONConverter {
     static XSSFRow row;
     JSONArray JSONFromExcel (String[] desiredHeaders, String pathName) {
@@ -46,7 +44,6 @@ public class JSONConverter {
         Iterator < Cell >  cellIterator = row.cellIterator();
 
         ArrayList<String> allHeaders = new ArrayList<String>();
-//        ArrayList<JSONObject> people = new ArrayList<JSONObject>();
         JSONArray people = new JSONArray();
         ArrayList<Integer> listOfIndeces = new ArrayList<Integer>();
         Cell cell;
@@ -55,7 +52,6 @@ public class JSONConverter {
         int indexOfFolderID = 0;
         int counter = 0;
 
-        //get array that contains the indeces of the desired headers then add those each loop
         Set <String> setOfDesiredHeaders = new HashSet<String>(Arrays.asList(desiredHeaders));
 
         while ( cellIterator.hasNext()) {
@@ -76,7 +72,6 @@ public class JSONConverter {
 
         ArrayList<String> usedIDs = new ArrayList<String>();
 
-//keep track of the position of all the valid headers. Only add to json object these specific headers
         if(containsFolderID) {
             while (rowIterator.hasNext()) {
                 JSONObject obj = new JSONObject();
@@ -92,7 +87,6 @@ public class JSONConverter {
 
                     }
                     people.add(obj);
-//                    System.out.println(obj);
                 }
             }
         }
@@ -106,11 +100,8 @@ public class JSONConverter {
                     obj.put(allHeaders.get(i), str_cell);
                 }
                 people.add(obj);
-//                System.out.println(obj);
             }
         }
-//        JSONObject[] arr = new JSONObject[people.size()];
-//        arr = people.toArray(arr);
         return people;
     }
 }

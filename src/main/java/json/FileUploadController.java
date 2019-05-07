@@ -3,9 +3,7 @@ package json;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.io.BufferedWriter;
-import java.io.BufferedReader;
 import java.io.FileWriter;
-import java.io.FileReader;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -38,19 +36,16 @@ public class FileUploadController {
 
     @GetMapping("/uploads")
     public String listUploadedFiles(Model model) throws IOException {
-        System.out.println("Test1");
         model.addAttribute("files", storageService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
                 .collect(Collectors.toList()));
-        System.out.println("Test1.5");
         return "uploadForm";
     }
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        System.out.println("Test2");
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
@@ -59,7 +54,6 @@ public class FileUploadController {
     @PostMapping("/uploads")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) throws IOException {
-        System.out.println("Test3");
         String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
                 "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
         JSONConverter converter = new JSONConverter();

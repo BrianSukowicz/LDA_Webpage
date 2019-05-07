@@ -1,19 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Change Admin Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel = "stylesheet" type = "text/css" href = "changeLogin.css" />
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/changeLoginAdmin}" th:object="${admin}" method="post">
-    <p>Username: <input id="username" type="text" th:field="*{id}"/></p>
-    <p>Message: <input id="password" type="password" th:field="*{password}" onkeyup='check();'/></p>
-    <p>Message: <input id="confirm_password" type="password"onkeyup='check();'/></p>
-    <p><input id="submit" type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
-</form>
-<span id='message'></span>
-<script>
+    <ul>
+        <li><a class="home" href="/">Home</a></li>
+        <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+        <li class="logo"><a href="https://thelda.org/"> </a></li>
+        <li><a href="/contacts">Directory</a></li>
+        <li><a href="https://thelda.org/contact/">Contact Us</a></li>
+    </ul>
+    <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <h1>Change Admin Login</h1>
+    <h4>Change login for admin users</h4>
+    <form action="#" th:action="@{/changeLoginAdmin}" th:object="${admin}" method="post">
+        <p>
+            <label for="username">Username: </label>
+            <input id="username" type="text" th:field="*{id}"/>
+        </p>
+        <p>
+            <label for="password">Password: </label>
+            <input id="password" type="password" th:field="*{password}" onkeyup='check();'/>
+        </p>
+        <p>
+            <label for="confirm_password">Confirm Password: &nbsp;  </label>
+            <input id="confirm_password" type="password"onkeyup='check();'/>
+        </p>
+        <p>
+            <input id="submit" type="submit" value="Submit"/>
+            <input id="reset" type="reset" value="Reset" />
+        </p>
+        <span id='message'></span>
+    </form>
+    <script>
         var check = function() {
           if (document.getElementById('password').value ==
             document.getElementById('confirm_password').value && document.getElementById('password').value) {

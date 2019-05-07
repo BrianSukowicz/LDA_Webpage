@@ -2,20 +2,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>LDA Login</title>
 </head>
 <body>
+
+<style>
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+border-style: solid;
+border: 1px solid #ccc;
+padding: 50px;
+
+
+}
+
+
+/* Full-width input fields */
+input[type= text], input[type=password]{
+
+  width: 40%;
+  padding: 10px 20px;
+  margin: 10px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+  font-size: 100%;
+  background-color: #003366;
+  color: white;
+  padding: 14px 0px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+}
+
+</style>
+
 <div th:if="${param.error}">
-    Invalid username and password.
+    Invalid username and password. <br> <br>
 </div>
 <div th:if="${param.logout}">
-    You have been logged out.
+    You have been logged out.<br> <br>
 </div>
 <form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> <strong/>Username<br> <input type="text" name="username"/> </label></div>
+    <div><label> <strong/>Password<br> <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
 
 </body>
 </html>
+

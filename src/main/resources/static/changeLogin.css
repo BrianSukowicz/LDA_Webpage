@@ -1,0 +1,80 @@
+
+form {
+  display: table;
+  display: inline-block;
+  }
+
+p {
+  display: table-row;
+}
+
+label {
+  display: table-cell;
+}
+
+input {
+  display: table-cell;
+}
+
+#submit {
+  background-color: #003366;
+  color: white;
+  padding: 14px 0px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+}
+
+#reset {
+  padding: 14px 0px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cccccc;
+  font-family: "Arial", Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+li {
+  float: left;
+  width: 20%;
+  height: 10%;
+}
+
+li a {
+  display: block;
+  color: #333333;
+  text-align: center;
+  padding: 40px 40px;
+  text-decoration: none;
+}
+
+.logo{
+    background: url("lda-logo.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+li a:hover {
+  background-color: #cccccc;
+  color: white;
+}
+
+.logo a:hover{
+    background-color: transparent;
+}
+
+#logoutForm {
+    visibility: hidden;
+}
+
+
