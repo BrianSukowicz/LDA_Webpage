@@ -36,7 +36,7 @@ public class FileUploadController {
 
     @GetMapping("/uploads")
     public String listUploadedFiles(Model model) throws IOException {
-        System.out.println("test");
+        System.out.println("test1");
         model.addAttribute("files", storageService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
@@ -47,6 +47,7 @@ public class FileUploadController {
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+        System.out.println("test2");
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
@@ -55,6 +56,7 @@ public class FileUploadController {
     @PostMapping("/uploads")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) throws IOException {
+        System.out.println("test3");
         String[] headers = {"Last Name", "First Name", "Maiden Name", "Date of Consecration", "Address Indicator",
                 "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
         JSONConverter converter = new JSONConverter();
