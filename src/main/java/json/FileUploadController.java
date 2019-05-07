@@ -62,8 +62,10 @@ public class FileUploadController {
                 "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
         JSONConverter converter = new JSONConverter();
         storageService.store(file);
+        System.out.println("test4");
         String pathName = ("upload-dir\\" + file.getOriginalFilename());
         JSONArray arrayOfPeople = converter.JSONFromExcel(headers, pathName);
+        System.out.println("test5");
         BufferedWriter writer = new BufferedWriter(new FileWriter("roster.json"));
         writer.write(arrayOfPeople.toJSONString());
         writer.close();
