@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Results</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel = "stylesheet" type = "text/css" href = "result.css" />
+</head>
+<body>
+    <ul>
+        <li><a class="home" href="/">Home</a></li>
+        <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+        <li class="logo"><a href="https://thelda.org/"> </a></li>
+        <li><a href="/contacts">Directory</a></li>
+        <li><a href="https://thelda.org/contact/">Contact Us</a></li>
+    </ul>
+    <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <div>
+        <p>Login Change Successful!</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+#logoutForm {
+    visibility: hidden;
+}
+
+#role {
+    visibility: hidden;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cccccc;
+  font-family: "Arial", Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+li {
+  float: left;
+  width: 20%;
+  height: 10%;
+}
+
+li a {
+  display: block;
+  color: #333333;
+  text-align: center;
+  padding: 40px 40px;
+  text-decoration: none;
+}
+
+.logo{
+    background: url("lda-logo.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+li a:hover {
+  background-color: #cccccc;
+  color: white;
+}
+
+.logo a:hover{
+    background-color: transparent;
+}

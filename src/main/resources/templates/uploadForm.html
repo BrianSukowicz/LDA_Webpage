@@ -1,0 +1,42 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel = "stylesheet" type = "text/css" href = "upload.css" />
+    <title>File Upload</title>
+</head>
+<body>
+    <ul>
+        <li><a class="home" href="/">Home</a></li>
+        <li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+        <li class="logo"><a href="https://thelda.org/"> </a></li>
+        <li><a href="/contacts">Directory</a></li>
+        <li><a href="https://thelda.org/contact/">Contact Us</a></li>
+    </ul>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/uploads">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+    </form>
+</div>
+
+<!--<div>-->
+    <!--<ul class = "files">-->
+        <!--<li class = "files" th:each="file : ${files}">-->
+            <!--<a class = "files" th:href="${file}" th:text="${file}" />-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+    <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
+</body>
+</html>
