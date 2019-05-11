@@ -36,7 +36,6 @@ public class FileUploadController {
 
     @GetMapping("/uploads")
     public String listUploadedFiles(Model model) throws IOException {
-        System.out.println("test1");
         model.addAttribute("files", storageService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
@@ -47,7 +46,6 @@ public class FileUploadController {
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        System.out.println("test2");
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
@@ -62,12 +60,8 @@ public class FileUploadController {
                 "Address 1", "Address 2", "City", "State", "Zip", "Country", "Primary Phone", "Email"};
         JSONConverter converter = new JSONConverter();
         storageService.store(file);
-        System.out.println("test4");
-        System.out.println(file.getOriginalFilename());
-        String pathName = ("storage\\upload-dir\\" + file.getOriginalFilename());
-        System.out.println("test 4.5");
+        String pathName = ("upload-dir\\" + file.getOriginalFilename());
         JSONArray arrayOfPeople = converter.JSONFromExcel(headers, pathName);
-        System.out.println("test5");
         BufferedWriter writer = new BufferedWriter(new FileWriter("roster.json"));
         writer.write(arrayOfPeople.toJSONString());
         writer.close();
