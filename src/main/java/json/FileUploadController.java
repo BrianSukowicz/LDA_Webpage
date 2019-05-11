@@ -64,7 +64,7 @@ public class FileUploadController {
         storageService.store(file);
         System.out.println("test4");
         System.out.println(file.getOriginalFilename());
-        String pathName = ("upload-dir\\" + file.getOriginalFilename());
+        String pathName = ("storage\\upload-dir\\" + file.getOriginalFilename());
         System.out.println("test 4.5");
         JSONArray arrayOfPeople = converter.JSONFromExcel(headers, pathName);
         System.out.println("test5");
